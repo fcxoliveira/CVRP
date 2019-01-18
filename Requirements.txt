@@ -1,0 +1,3 @@
+pip install nump
+pip install matplotlib
+pip install deap
