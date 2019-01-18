@@ -1,9 +1,10 @@
 import random
 import time
+import matplotlib.pyplot as plot
 from deap import base, creator
 from deap import tools
 from json import load
-from lib_ga import *
+from lib import *
 
 jsonFile = "bd.json"
 with open(jsonFile) as f:
@@ -16,7 +17,7 @@ IND_SIZE = 21
 nGen = 100
 cxPb = 0.5
 mutPb = 0.1
-size = 3200
+size = 6000
 
 creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMulti)
@@ -87,10 +88,18 @@ if __name__ == "__main__":
     print("Posição 4: Aptidão(Distância, Qt. de Carros)")
     for ash in range(len(frontPareto)):
         print(frontPareto[ash])
+    plot.xlabel('Distance')
+    plot.ylabel('Cars')
+    eixoX = []
+    eixoY = []
+    for id in values:
+        ind = pop[id]
+        x = ind.fitness.values[0]
+        y = ind.fitness.values[1]
+        eixoX.append(x)
+        eixoY.append(y)
+    plot.plot(eixoX, eixoY, 'g^')
+    plot.show()
     end = time.process_time()
     temp = (end - start)/60
     print("Duração do código em minutos: %s" %temp)
-
-
-
-
