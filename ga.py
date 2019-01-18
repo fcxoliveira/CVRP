@@ -201,10 +201,14 @@ if __name__ == "__main__":
                     indices.append(i)
 
     values = sorted(set(indices))
-    print(values)
+    print("Indíces de indivíduos únicos ou que se repetem: %s" %values)
     frontPareto = FastNonDominatedSort(pop, values)
+    print("---- Fronte de Pareto ----")
+    print("Posição 1: Genótipo")
+    print("Posição 2: Soluções Dominadas")
+    print("Posição 3: Soluções que a dominam")
+    print("Posição 4: Aptidão(Distância, Qt. de Carros)")
     for ash in range(len(frontPareto)):
         print(frontPareto[ash])
     end = time.process_time()
     temp = (end - start)/60
-    print(temp)
